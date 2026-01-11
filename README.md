@@ -74,7 +74,7 @@ cd codeql-java-demo
 CodeQL 需要先将源代码编译并构建为数据库，才能进行查询分析。
 
 ```bash
-codeql database create ../codeql-db --language=java-kotlin --overwrite
+codeql database create ../codeql-db --language=java-kotlin
 ```
 
 **参数说明：**
@@ -92,10 +92,8 @@ codeql database create ../codeql-db --language=java-kotlin --overwrite
 
 本项目提供了一个示例查询 `query_method.ql`，用于列出项目中所有方法的详细信息：
 
-**特别注意：在执行该命令前需要将``.git``文件删除**
-
 ```bash
-codeql database analyze ../codeql-db query_method.ql --format=sarif-latest --output=methods.sarif --threads=4 --verbose
+codeql database analyze ../codeql-db query_method.ql --format=sarif-latest --output=methods.sarif --threads=4
 ```
 
 #### 方式二：运行 CodeQL 内置查询
