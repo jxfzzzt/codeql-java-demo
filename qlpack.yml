@@ -1,0 +1,7 @@
+name: my-java-queries
+version: 1.0.0
+description: Custom Java queries for project analysis
+dependencies:
+  codeql/java-all: "*"
+license: MIT
+library: true
