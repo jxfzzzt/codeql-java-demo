@@ -117,23 +117,25 @@ codeql database analyze ../codeql-db codeql/java-queries --download --format=sar
 
 ```ql
 /**
- * @name List All Methods
- * @description 列出所有方法的详细信息
+ * @name List All Methods in Project
+ * @description 列出项目中定义的所有方法及其详细信息
  * @kind problem
- * @id java/list-methods
+ * @id java/list-all-methods
  * @problem.severity recommendation
  */
 
 import java
 
 from Method m
-where not m.isAbstract() and m.fromSource()
+where 
+  m.fromSource() and           // Only methods defined in source code
+  not m.isAbstract()           // Exclude abstract methods
 select m,
-  m.getDeclaringType().getQualifiedName(),  // 所属类的全限定名
-  m.getName(),                               // 方法名
-  m.getReturnType().toString(),              // 返回类型
-  m.getNumberOfParameters(),                 // 参数数量
-  m.getLocation().getStartLine()             // 起始行号
+  "Method: " + m.getName() + 
+  " | Class: " + m.getDeclaringType().getQualifiedName() + 
+  " | Return: " + m.getReturnType().toString() + 
+  " | Params: " + m.getNumberOfParameters().toString() + 
+  " | Line: " + m.getLocation().getStartLine().toString()
 ```
 
 ### 更多查询示例
