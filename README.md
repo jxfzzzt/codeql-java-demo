@@ -92,6 +92,8 @@ codeql database create ../codeql-db --language=java-kotlin --overwrite
 
 本项目提供了一个示例查询 `query_method.ql`，用于列出项目中所有方法的详细信息：
 
+**特别注意：在执行该命令前需要将``.git``文件删除**
+
 ```bash
 codeql database analyze ../codeql-db query_method.ql --format=sarif-latest --output=methods.sarif --threads=4 --verbose
 ```
@@ -113,8 +115,6 @@ codeql database analyze ../codeql-db codeql/java-queries --download --format=sar
 | `--threads` | 并行分析线程数 |
 
 ## 📝 自定义查询示例
-**特别注意：在执行该命令前需要将``.git``文件删除**
-
 以下是 `query_method.ql` 的完整内容，演示如何编写一个列出所有方法的 CodeQL 查询：
 
 ```ql
